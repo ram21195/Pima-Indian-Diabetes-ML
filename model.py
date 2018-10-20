@@ -12,13 +12,16 @@ df= pd.read_csv("pima.csv")
 x= df.iloc[:,0:8].values
 y= df.iloc[:,8].values
 
+#Scaling the data
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 x = sc.fit_transform(x)
 
+#Splitting the data
 from sklearn.cross_validation import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.2)
 
+#Decision tree classification (gini)
 from sklearn.tree import DecisionTreeClassifier
 classifier1= DecisionTreeClassifier(criterion="gini",random_state=123)
 classifier1.fit(x_train,y_train)
@@ -29,6 +32,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 cm1 = confusion_matrix(y_test,y_pred1)
 acc1 = accuracy_score(y_test,y_pred1)
 
+#Decision tree classification (entropy)
 from sklearn.tree import DecisionTreeClassifier
 classifier2= DecisionTreeClassifier(criterion="entropy",random_state=123)
 classifier2.fit(x_train,y_train)
@@ -39,10 +43,12 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 cm2 = confusion_matrix(y_test,y_pred2)
 acc2 = accuracy_score(y_test,y_pred2)
 
+#Decision tree
 from sklearn import tree
 from sklearn.tree import export_graphviz
 tree.export_graphviz(classifier1, out_file='tree.dot') 
 
+#using SVM for classification(rbf)
 from sklearn.svm import SVC
 svclassifier1= SVC(kernel='rbf')
 svclassifier1.fit(x_train,y_train)
@@ -53,16 +59,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 SVCcm1 = confusion_matrix(y_test,y_pred3)
 SVCacc1 = accuracy_score(y_test,y_pred3)
 
-from sklearn.svm import SVC
-svclassifier1= SVC(kernel='rbf')
-svclassifier1.fit(x_train,y_train)
-
-y_pred3 = svclassifier1.predict(x_test)
-
-from sklearn.metrics import confusion_matrix, accuracy_score
-SVCcm1 = confusion_matrix(y_test,y_pred3)
-SVCacc1 = accuracy_score(y_test,y_pred3)
-
+#using SVM for classification(linear)
 from sklearn.svm import SVC
 svclassifier2= SVC(kernel='linear')
 svclassifier2.fit(x_train,y_train)
@@ -73,6 +70,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 SVCcm2 = confusion_matrix(y_test,y_pred4)
 SVCacc2 = accuracy_score(y_test,y_pred4)
 
+#using SVM for classification(poly)
 from sklearn.svm import SVC
 svclassifier3= SVC(kernel='poly')
 svclassifier3.fit(x_train,y_train)
@@ -83,6 +81,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 SVCcm3 = confusion_matrix(y_test,y_pred5)
 SVCacc3 = accuracy_score(y_test,y_pred5)
 
+#using SVM for classification(sigmoid)
 from sklearn.svm import SVC
 svclassifier4= SVC(kernel='sigmoid')
 svclassifier4.fit(x_train,y_train)
