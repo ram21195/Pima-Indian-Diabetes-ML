@@ -53,15 +53,6 @@ from sklearn.metrics import confusion_matrix, accuracy_score
 SVCcm1 = confusion_matrix(y_test,y_pred3)
 SVCacc1 = accuracy_score(y_test,y_pred3)
 
-from sklearn.svm import SVC
-svclassifier1= SVC(kernel='rbf')
-svclassifier1.fit(x_train,y_train)
-
-y_pred3 = svclassifier1.predict(x_test)
-
-from sklearn.metrics import confusion_matrix, accuracy_score
-SVCcm1 = confusion_matrix(y_test,y_pred3)
-SVCacc1 = accuracy_score(y_test,y_pred3)
 
 from sklearn.svm import SVC
 svclassifier2= SVC(kernel='linear')
